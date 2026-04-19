@@ -1,0 +1,26 @@
+{
+  "entities": {
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Uma transação financeira de entrada ou saída.",
+      "type": "object",
+      "properties": {
+        "titulo": { "type": "string", "description": "O título ou descrição da transação." },
+        "valor": { "type": "number", "description": "O valor monetário da transação." },
+        "tipo": { "enum": ["entrada", "saida"], "type": "string", "description": "Tipo da transação: entrada ou saída." },
+        "data": { "format": "date", "type": "string", "description": "A data em que a transação ocorreu." },
+        "status": { "enum": ["pago", "pendente"], "type": "string", "description": "Status de pagamento da transação." },
+        "userId": { "type": "string", "description": "ID do usuário (autenticado anonimamente) dono da transação." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Data de criação." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Data de última atualização." }
+      },
+      "required": ["titulo", "valor", "tipo", "data", "status", "userId", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "Coleção de transações financeiras dos usuários."
+    }
+  }
+}
